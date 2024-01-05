@@ -28,22 +28,22 @@ for i in range(0, len(jira_issues), batch_size):
         
         print(jira_issue['fields']['description'])
 
-            github_issue_data = {
-                'title': jira_issue['fields']['summary'],
-                'body': jira_issue['fields']['description'],
-                'labels': [label['name'] for label in jira_issue['fields']['labels']],
+        github_issue_data = {
+            'title': jira_issue['fields']['summary'],
+            'body': jira_issue['fields']['description'],
+            'labels': [label['name'] for label in jira_issue['fields']['labels']],
                 # Add more fields as needed
-            }
+        }
 
-            github_headers = {'Authorization': f'token {github_token}'}
-            github_response = requests.post(github_url, json=github_issue_data, headers=github_headers)
+        github_headers = {'Authorization': f'token {github_token}'}
+        github_response = requests.post(github_url, json=github_issue_data, headers=github_headers)
 
-            if github_response.status_code == 201:
-                print(f"Successfully transferred Jira issue {jira_issue['key']} to GitHub.")
-            else:
-                print(f"Failed to transfer Jira issue {jira_issue['key']} to GitHub. Error: {github_response.text}")
+        if github_response.status_code == 201:
+            print(f"Successfully transferred Jira issue {jira_issue['key']} to GitHub.")
+        else:
+            print(f"Failed to transfer Jira issue {jira_issue['key']} to GitHub. Error: {github_response.text}")
 
-            time.sleep(1)  # Introduce a 1-second delay between GitHub requests
+        time.sleep(1)  # Introduce a 1-second delay between GitHub requests
 
     time.sleep(5)  # Introduce a 5-second delay between batches for Jira API rate limiting
     
