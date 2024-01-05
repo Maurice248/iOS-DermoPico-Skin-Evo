@@ -6,8 +6,8 @@ import json
 
 # Jira and GitHub credentials
 jira_username = 'cmae@chowis.com'
-jira_token = 'ATATT3xFfGF0eOUtGBXkgBKEocWa48887MVaisCcrxtZ6pVWoV92Zaj7_dInU-aMs09IfgcrLTiTjgWbiaoqWN9Q0xFl9GQ9SOg4qFZnit4sqyV4hpIrierOK5Buq4-hNwH9X-RDU6eUO5A6Y11xqXZADGomXsA7p3r_Zv4nJNPEE3xfYepEY9M=F4F42F66'
-github_token = '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'
+jira_token = 'ATATT3xFfGF00qncQVm1HSYrY6Z4QACK-LHrhzeOcROGRxSDRqirJLaunRUFwxy5vbUviARU_Kl_M9iCjb3g3LJ_O5LzqZRqfjIHEzx5rUdjnKPFpsJAt2ukDRq4GJEmV7-n454UGKtdQPQ0uPB7IrQdObPfdxQdfNyZ1EgIScy0qpiDcAVy3nA=CE2A2101'
+github_token = 'ghp_CkDkRVFR7BNUNv0wkqFxNV6cQoQpcm376un'
 
 # Jira and GitHub URLs
 jira_url = 'https://chowis.atlassian.net/rest/api/2/'
@@ -26,6 +26,8 @@ for i in range(0, len(jira_issues), batch_size):
     for jira_issue in batch:
         # jira_status = jira_issue['fields']['status']['name']
         
+        print(jira_issue['fields']['description'])
+
             github_issue_data = {
                 'title': jira_issue['fields']['summary'],
                 'body': jira_issue['fields']['description'],
